@@ -1,15 +1,22 @@
 #print("Hello Sara!")
 #print("Hello Tim!")
 
-import tkinter as tk
-from tkinter import ttk
+from tkinter import *
+from tkinter import filedialog
 from PIL import Image, ImageTk
 
-#reference = Image.open()
+window = Tk()
+window.title("Gridify")
 
-window = tk.Tk()
-frame = ttk.Frame(window, padding=10)
-frame.grid()
-ttk.Button(frame, text="Quit", command=window.destroy).grid(column=1, row=0)
+
+def openfile():
+	global reference
+	# TODO: limit this dialog box to only png, jpg, and jpeg files
+	window.filename = filedialog.askopenfilename(title="Select an image")
+	reference = ImageTk.PhotoImage(Image.open(window.filename))
+	reference_label = Label(window, image=reference).pack()
+
+quitbutton = Button(window, text="Quit", command=window.destroy).pack()
+openbutton = Button(window, text="Open Image", command=openfile).pack()
 
 window.mainloop()
