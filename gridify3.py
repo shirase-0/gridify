@@ -19,8 +19,12 @@ def openfile():
 
 	with Image.open(window.filename) as im:
 		draw = ImageDraw.Draw(im)
-		draw.line((0, 0) + im.size, fill=128)
-		draw.line((0, im.size[1], im.size[0], 0), fill=128)
+		#draw.line((0, 0) + im.size, fill=128)
+		#draw.line((0, im.size[1], im.size[0], 0), fill=128)
+
+		draw.line((5, 5) + im.size, fill=128)
+		draw.line((500, 0, 500, 500), fill=128)
+
 	#write to stdout
 	im.save("test", "PNG")
 
