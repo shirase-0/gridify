@@ -14,8 +14,6 @@ def openfile():
 	global reference
 	# TODO: limit this dialog box to only png, jpg, and jpeg files
 	window.filename = filedialog.askopenfilename(title="Select an image")
-	reference = ImageTk.PhotoImage(Image.open(window.filename))
-	reference_label = Label(window, image=reference).pack()
 
 	with Image.open(window.filename) as im:
 		draw = ImageDraw.Draw(im)
@@ -24,6 +22,9 @@ def openfile():
 
 		draw.line((5, 5) + im.size, fill=128)
 		draw.line((500, 0, 500, 500), fill=128)
+		
+		reference = ImageTk.PhotoImage(im)
+		reference_label = Label(window, image=reference).pack()
 
 	#write to stdout
 	im.save("test", "PNG")
